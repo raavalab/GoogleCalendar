@@ -1,9 +1,21 @@
+const {google} = require('googleapis');
 const express = require("express");
+require('dotenv').config();
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false}));
+app.use(express.json());
+
 app.get('/', (req, res) => {
-    res.send("Olá Mundo 234");
+    res.send("Olá Mundo 2");
+})
+
+
+app.post('/webhook', async (req, res) => {
+    
+    
+    res.send(responder);
 })
 
 const porta = process.env.PORT || 8080;
