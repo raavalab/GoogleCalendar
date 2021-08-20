@@ -22,30 +22,9 @@ app.get('/', (req, res) => {
 
 app.post('/webhook', async (req, res) => {
     
-    const mensagem = req.body.queryResult.queryText;
-    const intencao = req.body.queryResult.intent.displayName;
-    
-    let responder = ""
-    let parametros = new Array();
-
-    let varName = '';
-    let varPhone = '';
-
-    //console.log('mensagem123: [' + mensagem + ']');
-    console.log('intencao: [' + intencao + ']');
-
     switch(intencao) {
         case 'Default Welcome Intent':
 
-            parametros[0] = req.body.queryResult.parameters['name'];
-            parametros[1] = req.body.queryResult.parameters['phone'];
-
-            // Rotina para pegar os parametros do context
-            //const contexto = req.body.queryResult.outputContexts[0];
-            // varName = req.body.queryResult.outputContexts[0].parameters.name;
-            // varPhone = req.body.queryResult.outputContexts[0].parameters.phone;     
-            
-            //resposta = await googleFirebase.defaultWelcome( mensagem, parametros );
             break;
         case 'verCardapio':
             //resposta = await googleCalendar.verCardapio( mensagem, parametros );
@@ -58,61 +37,15 @@ app.post('/webhook', async (req, res) => {
 //
           break;
         case 'verAgenda':
-            parametros[0] = req.body.queryResult.parameters['AppointmentType'];
-            parametros[1] = req.body.queryResult.parameters['date'];
-
-      
-            console.log('Passou aqui - varAgenda');
             //resposta = await googleCalendar.verAgenda( mensagem, parametros );
             break;
         case 'salvarPlanilha':
-            parametros[0] = req.body.queryResult.parameters['Dentistas'];
-            parametros[1] = req.body.queryResult.parameters['date'];
-            parametros[2] = req.body.queryResult.parameters['number'];
-
-            // for (let i = 0; i< parametros.length;i++){
-            //       console.log('parametros: ' + parametros[i]);
-            //   }
-          
-            console.log('Passou aqui');
             //resposta = await googleSheet.salvarPlanilha( mensagem, parametros );
             break;
         case 'verPlanilha':
-            parametros[0] = req.body.queryResult.parameters['date'];
-  
-            console.log('parametros: ' + parametros[0]);
             //resposta = await googleSheet.verPlanilha( mensagem, parametros );
             break;
         case 'teste':
-              parametros[0] = req.body.queryResult.parameters['time'];
-              let time = new Date(req.body.queryResult.parameters['time']);
-
-              const contexto = req.body.queryResult.outputContexts[0];
-              varName = contexto.parameters.name;
-              varPhone = contexto.parameters.phone;
-
-              console.log(`varName1: ${varName}`);
-              console.log(`varPhone1: ${varPhone}`);
-
-
-              varName = req.body.queryResult.outputContexts[0].parameters.name;
-              varPhone = req.body.queryResult.outputContexts[0].parameters.phone;
-
-  
-              console.log(`varName2: ${varName}`);
-              console.log(`varPhone2: ${varPhone}`);
-  
-
-
-              //console.log('module', module);
-              //console.log('exports', exports);
-
-              //functions.digaOi();
-              //let inputContexts = request.body.queryResult.contexts;
-
-              //console.log(request.body.queryResult.contexts[0]);
-              //console.log(request.body.queryResult.outputContexts[1]);
-              //console.log(request.body.queryResult.contexts[2]);
 
               resposta = {
                 tipo: 'texto', 
