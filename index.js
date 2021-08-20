@@ -19,11 +19,6 @@ app.get('/', (req, res) => {
     res.send("Olá Mundo 2");
 })
 
-
-app.post('/webhook', async (req, res) => {
-    
-})
-
 const porta = process.env.PORT || 8080;
 const hostname  ='127.0.0.1';
 
