@@ -55,53 +55,7 @@ app.post('/webhook', async (req, res) => {
             break;
         case 'marcarConsulta':
         //case 'followupmarcarConsulta': precisa corrigir essa linha
-          parametros[0] = req.body.queryResult.parameters['AppointmentType'];
-          parametros[1] = req.body.queryResult.parameters['date'];
-          parametros[2] = req.body.queryResult.parameters['horas'];
-          parametros[3] = req.body.queryResult.parameters['name'];
-          parametros[4] = req.body.queryResult.parameters['phone'];
-
-          const session = req.body.queryResult.outputContexts[0].name;;
-          let result_session = session.split("/");
-          let projectId = result_session[1];
-          let sessionId = result_session[4];
-      
-          let date = new Date(req.body.queryResult.parameters['date']);
-          
-          let bookingDate = functions.juntadataHoraConsulta(parametros[1], parametros[2]);
-          let bookingDateStart = new Date(bookingDate['start']);
-          let now = new Date();
-
-          if (bookingDateStart < now){
-            console.log(`You can't make a reservation in the past. Please try again!`);
-
-            resposta = {
-              tipo: 'texto', 
-              mensagem: 'Desculpe, não é possivel marcar uma consulta no passado. Favor tentar novamente.'
-            }
-
-          } else if (bookingDateStart.getFullYear() > now.getFullYear()) {
-            let booking_year = bookingDateStart.getFullYear();
-            let now_year = now.getFullYear();
-            console.log(`You can't make a reservation for ${booking_year} yet. Please choose a date in ${now_year}. `);
-
-            resposta = {
-              tipo: 'texto', 
-              mensagem: `Desculpe, não é possivel marcar uma consulta para ${booking_year} ainda. Favor tentar novamente, para ${now_year}.`
-            }
-          } else {
-            parametros[0] = req.body.queryResult.parameters['AppointmentType'];
-            parametros[1] = req.body.queryResult.parameters['date'];
-            parametros[2] = req.body.queryResult.parameters['horas'];
-            parametros[3] = req.body.queryResult.parameters['name'];
-            parametros[4] = req.body.queryResult.parameters['phone'];
-
-            parametros[5] = projectId;
-            parametros[6] = sessionId;
-
-            //resposta = await googleCalendar.marcarConsulta( mensagem, parametros );
-          }
-
+//
           break;
         case 'verAgenda':
             parametros[0] = req.body.queryResult.parameters['AppointmentType'];
