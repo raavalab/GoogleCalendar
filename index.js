@@ -22,6 +22,9 @@ app.get('/', (req, res) => {
 
 app.post('/webhook', async (req, res) => {
     
+    const mensagem = req.body.queryResult.queryText;
+    const intencao = req.body.queryResult.intent.displayName;
+
     switch(intencao) {
         case 'Default Welcome Intent':
             break;
