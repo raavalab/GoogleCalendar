@@ -43,13 +43,9 @@ app.post('/webhook', async (req, res) => {
         case 'teste':
               break;
         default: 
-            resposta = {
-                tipo: 'texto', 
-                mensagem: 'Sinto muito, não entendi o que você quer.'
-            }
     }
     
-    res.send(responder);
+
 })
 
 const porta = process.env.PORT || 8080;
